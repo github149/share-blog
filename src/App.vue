@@ -33,7 +33,7 @@ export default {
 
 <style>
 .link{
-  color: #E4E7ED;
+  color: white;
   text-decoration: none;
 }
 .el-header,

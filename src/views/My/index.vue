@@ -102,6 +102,11 @@ export default {
 @media screen and (max-width: 768px) {
   .user {
     padding: 0px;
+  } 
+}
+@media(min-width: 700px){
+  .user > ul > li {
+    padding: 0px;
   }
 }
 .user > ul > li {

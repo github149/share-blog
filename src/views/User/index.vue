@@ -14,7 +14,6 @@
           <div class="description">
             {{ item.description }}
           </div>
-          
         </div>
       </li>
     </ul>
@@ -40,28 +39,36 @@ export default {
   },
   methods: {
     getTime(str) {
-      let date = typeof str === 'string' ? new Date(str) :str
-      
+      let date = typeof str === "string" ? new Date(str) : str;
+
       return {
         year: date.getFullYear(),
         month: date.getMonth() + 1,
-        day:date.getDate()
+        day: date.getDate(),
       };
     },
   },
 };
 </script>
 <style scoped>
+@media (max-width: 768px) {
+  #date {
+    display: none;
+  }
+  .content {
+    margin-left: 0px;
+  }
+}
 #date {
   color: #666666;
 }
 #date .month,
 #date .year {
   font-size: 13px;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 #date .day {
-  white-space:nowrap;
+  white-space: nowrap;
   line-height: 42px;
   font-size: 22px;
 }
@@ -97,5 +104,4 @@ export default {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-
 </style>

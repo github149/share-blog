@@ -1,29 +1,30 @@
 import axios from "axios";
-
+import _ from 'lodash'
 import { Message } from "element-ui";
 import { Loading } from "element-ui";
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 axios.defaults.baseURL = "//blog-server.hunger-valley.com";
 // 添加请求拦截器
-let count = 0;
-console.log(count)
+
 let loadingInstance;
+function showLoading() {
+    loadingInstance = Loading.service({
+      fullscreen: true,
+      background: "#fff",
+    });
+}
+let hideLoading = _.debounce(() => {
+  loadingInstance.close();
+}, 300);
 axios.interceptors.request.use(
   function (config) {
-    count ++
     // 在发送请求之前做些什么
-    if(count>=1){
-        loadingInstance = Loading.service({ fullscreen: true, background: "#fff" });
-    }
-    
+    showLoading();
     return config;
   },
   function (error) {
-    this.$nextTick(() => {
-      // 以服务的方式调用的 Loading 需要异步关闭
-      loadingInstance.close();
-    });
+    hideLoading();
     // 对请求错误做些什么
     return Promise.reject(error);
   }
@@ -32,27 +33,13 @@ axios.interceptors.request.use(
 // 添加响应拦截器
 axios.interceptors.response.use(
   function (response) {
-
     // 对响应数据做点什么
-    count--
-    if(count<=0){
-        loadingInstance.close();
-        
-    }
-    
-
-    // loadingInstance=Loading.service({ fullscreen: true });
-    // this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-    //     loadingInstance.close();
-    //   });
+    hideLoading();
     return response;
   },
   function (error) {
-    // 对响应错误做点什么
-    this.$nextTick(() => {
-      // 以服务的方式调用的 Loading 需要异步关闭
-      loadingInstance.close();
-    });
+    // 以服务的方式调用的 Loading 需要异步关闭
+    hideLoading();
     return Promise.reject(error);
   }
 );

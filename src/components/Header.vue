@@ -31,7 +31,7 @@
             ><i class="el-icon-edit link"></i
           ></router-link>
           <div class="circle">
-            <img :src="user.avatar" alt="" />
+            <img :src="user.avatar" alt="" height="100%"/>
             <ul>
               <li><router-link to="/my" class="link">我的</router-link></li>
               <li><a href="#" @click="logout">注销</a></li>

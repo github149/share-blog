@@ -90,6 +90,12 @@ export default {
   padding: 0px 140px;
   width:100%
 }
+@media(max-width:700px){
+  .el-form {
+  padding: 0px 6px;
+  width:100%
+}
+}
 .el-form .title {
   padding: 18px 0px;
   text-align: center;

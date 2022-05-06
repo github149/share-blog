@@ -3,7 +3,6 @@ import auth from "../api/auth"
 const state = {
     isLogin: false,
     user: null,
-    loaddingCount:0,
 }
 const getters = {
     isLogin: state => state.isLogin,
@@ -23,6 +22,7 @@ const mutations = {
 
 }
 const actions = {
+    //登录
     //actions中请求数据
     async checkLogin({ commit }) {
         let res = await auth.auth()

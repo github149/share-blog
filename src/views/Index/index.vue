@@ -24,6 +24,7 @@
     <Pagination
       :page.sync="page"
       :count="count"
+      :hide-on-single-page="true"
       @handleCurrentChange="getBlog"
     />
   </div>
@@ -134,8 +135,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
-  height: 3em;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 .router-link {

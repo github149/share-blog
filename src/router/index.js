@@ -73,16 +73,14 @@ const routes = [{
 const router = new VueRouter({
     routes
 })
+//每一次发送请求，如果有一项(创建博客，我的，删除博客)是要验证，都调用验证是否登录的接口，验证用户信息
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.require)) {
         store.dispatch('checkLogin').then(res => {
             console.log("checkLogin________________", res)
             if (!res) {
                 //没有登录直接跳转到首页
-                next({
-                    path: '/login',
-                    query: { redirect: to.fullPath }
-                })
+                next('/login')
             } else {
                 next()
             }
